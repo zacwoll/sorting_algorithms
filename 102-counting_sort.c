@@ -1,0 +1,72 @@
+#include "sort.h"
+
+int int_count(int *array, size_t size, int key)
+{
+	int total = 0;
+	size_t i;
+
+	for (i = 0; i < size; i++)
+		if (array[i] == key)
+			total++;
+
+	return (total);
+}
+
+void counting_sort(int *array, size_t size)
+{
+	int b = 0, a = 1;
+	size_t i, j, max = 0;
+	int *c_array, *sorted;
+
+	if (!array || size < 2)
+		return;
+	for (i = 0; i < size; i++)
+	{
+		if (array[i] > max)
+		{
+			max = array[i];
+		}
+	}
+	c_array = malloc(sizeof(int) * (max + 1));
+	if (!c_array)
+		return;
+	c_array[0] = int_count(array, size, 0);
+	for (j = 0; j < ((size_t)max + 1); j++)
+	{
+		b = c_array[j - 1] + int_count(array, size, a);
+		c_array[j] = b;
+		a++;
+	}
+	print_array(c_array, (max + 1));
+	sorted = malloc(sizeof(int) * size);
+	if (!sorted)
+	{
+		free(c_array);
+		return;
+	}
+	for (i = 0; i < size; i++)
+		sorted[c_array[array[i]] - 1] = array[i];
+	for (i = 0; i < size; i++)
+		array[i] = sorted[i];
+	free(sorted);
+	free(c_array);
+}
+
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0
+ */
+int main(void)
+{
+    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+    size_t n = sizeof(array) / sizeof(array[0]);
+
+    print_array(array, n);
+    printf("\n");
+    counting_sort(array, n);
+    printf("\n");
+    print_array(array, n);
+    return (0);
+}
