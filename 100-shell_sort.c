@@ -22,7 +22,7 @@ void swap(int *array, int a, int b)
  */
 int start_gap(size_t size)
 {
-	int gap = 1;
+	size_t gap = 1;
 
 	while ((gap * 3 + 1) < size)
 	{
@@ -38,7 +38,8 @@ int start_gap(size_t size)
  */
 void shell_sort(int *array, size_t size)
 {
-	int gap, temp, i, j;
+	size_t gap, i, j;
+	int temp;
 
 	gap = start_gap(size);
 	while (gap)
