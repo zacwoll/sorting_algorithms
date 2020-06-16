@@ -13,10 +13,10 @@ void swap(int *array, int a, int b)
 }
 
 /**
- * swap - swaps 2 nodes in a doubly linked list
- * @a: address of first node
- * @b: address of second node
- */
+* swap - swaps 2 nodes in a doubly linked list
+* @a: address of first node
+* @b: address of second node
+*/
 void swap(listint_t *a, listint_t *b)
 {
 	if (a->prev)

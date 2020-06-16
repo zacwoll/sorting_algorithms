@@ -1,9 +1,8 @@
 #include "sort.h"
 
-void top_down_merge(int *array, size_t begin, 
-		size_t mid, size_t end, int *b_array)
+void top_down_merge(int *array, size_t begin, size_t end, int *b_array)
 {
-	size_t i = begin, j = mid, k;
+	size_t i = begin, j, k, mid;
 
 	j = mid = (begin + end) / 2;
 	printf("Merging...\n");
@@ -11,19 +10,16 @@ void top_down_merge(int *array, size_t begin,
 	print_array(array + begin, mid - begin);
 	printf("[right]: ");
 	print_array(array + mid, end - mid);
-	for (k = i; k < end; k++)
-	{
+	for (k = begin; k < end; k++)
 		if (i < mid && (j >= end || array[i] <= array[j]))
-				b_array[k] = array[i++];
+			b_array[k] = array[i++];
 		else
-				b_array[k] = array[j++];
-	}
+			b_array[k] = array[j++];
 	printf("[Done]: ");
 	print_array(b_array + begin, end - begin);
-	print_array(b_array, 10);
 }
 
-void top_down_split_merge(int *b_array, size_t begin, size_t end, int *array)
+void top_down_split_merge(int *array, size_t begin, size_t end, int *b_array)
 {
 	size_t mid;
 
@@ -32,7 +28,7 @@ void top_down_split_merge(int *b_array, size_t begin, size_t end, int *array)
 		return;
 	top_down_split_merge(b_array, begin, mid, array);
 	top_down_split_merge(b_array, mid, end, array);
-	top_down_merge(array, begin, mid, end, b_array);
+	top_down_merge(array, begin, end, b_array);
 }
 
 void merge_sort(int *array, size_t size)
