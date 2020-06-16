@@ -3,18 +3,26 @@
 
 /**
  * swap - swaps 2 elements in an int array
+ * @array: int array
  * @a: the first element index
  * @b: the second element index
  */
 void swap(int *array, int a, int b)
 {
-        if (a == b)
-                return;
-        array[a] ^= array[b];
-        array[b] ^= array[a];
-        array[a] ^= array[b];
+	if (a == b)
+		return;
+	array[a] ^= array[b];
+	array[b] ^= array[a];
+	array[a] ^= array[b];
 }
 
+/**
+ * heapify - converts array to max heap
+ * @array: int array
+ * @heap_size: size of the array to be heaped
+ * @i: recursive element to set as largest value
+ * @size: size of array
+ */
 void heapify(int *array, size_t heap_size, size_t i, size_t size)
 {
 	size_t largest = i;
@@ -33,6 +41,11 @@ void heapify(int *array, size_t heap_size, size_t i, size_t size)
 	}
 }
 
+/**
+ * heap_sort - sorts array using heap_sort
+ * @array: int array to be sorted
+ * @size: size of array
+ */
 void heap_sort(int *array, size_t size)
 {
 	size_t i;
@@ -46,17 +59,4 @@ void heap_sort(int *array, size_t size)
 		print_array(array, size);
 		heapify(array, i, 0, size);
 	}
-}
-
-int main(void)
-{
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    heap_sort(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }

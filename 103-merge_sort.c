@@ -1,5 +1,12 @@
 #include "sort.h"
 
+/**
+ * top_down_merge - accessory method to sort and merge subarrays
+ * @array: array to be sorted
+ * @begin: lower index of subarray
+ * @end: upper index of subarray
+ * @b_array: sorted values
+ */
 void top_down_merge(int *array, size_t begin, size_t end, int *b_array)
 {
 	size_t i = begin, j, k, mid;
@@ -19,6 +26,13 @@ void top_down_merge(int *array, size_t begin, size_t end, int *b_array)
 	print_array(b_array + begin, end - begin);
 }
 
+/**
+ * top_down_split_merge - recursively splits array down to sortable subarrays
+ * @array: int array to be sorted
+ * @begin: lower index of subarray
+ * @end: upper index of subarray
+ * @b_array: the sorted input array
+ */
 void top_down_split_merge(int *array, size_t begin, size_t end, int *b_array)
 {
 	size_t mid;
@@ -31,6 +45,11 @@ void top_down_split_merge(int *array, size_t begin, size_t end, int *b_array)
 	top_down_merge(array, begin, end, b_array);
 }
 
+/**
+ * merge_sort - sorts int array using merge sort
+ * @array: int array to be sorted
+ * @size: size of int array
+ */
 void merge_sort(int *array, size_t size)
 {
 	int *b_array;
@@ -46,17 +65,4 @@ void merge_sort(int *array, size_t size)
 		b_array[i] = array[i];
 	top_down_split_merge(b_array, 0, size, array);
 	free(b_array);
-}
-
-int main(void)
-{
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    merge_sort(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }

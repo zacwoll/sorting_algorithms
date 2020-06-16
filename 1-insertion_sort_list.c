@@ -38,12 +38,12 @@ void insertion_sort_list(listint_t **list)
 			if (j->prev->n > j->n)
 			{
 				swap(j->prev, j);
-				if (!j->prev);
+				if (!j->prev)
 					*list = j;
 				print_list(*list);
 			}
 			else
-				break; /* or j=j->prev */
+				j = j->prev;
 		}
 	}
 }

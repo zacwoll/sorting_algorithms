@@ -1,5 +1,11 @@
 #include "sort.h"
 
+/**
+ * swap - swaps 2 elements in an int array
+ * @array: int array
+ * @a: the first element index
+ * @b: the second element index
+ */
 void swap(int *array, int a, int b)
 {
 	if (a == b)
@@ -9,6 +15,14 @@ void swap(int *array, int a, int b)
 	array[a] ^= array[b];
 }
 
+/**
+ * partition - sorts subarray using pivot value
+ * @array: int array
+ * @lo: lower index of subarray
+ * @hi: upper index of subarray
+ * @size: size of array
+ * Return: border of new subarrays to be sorted
+ */
 int partition(int *array, size_t lo, size_t hi, size_t size)
 {
 	size_t i = lo, j = hi;
@@ -22,13 +36,19 @@ int partition(int *array, size_t lo, size_t hi, size_t size)
 			j--;
 		if (i >= j)
 			return (j);
-		//printf("pivot: %d\n", pivot);
 		swap(array, i, j);
 		print_array(array, size);
 		i++;
 	}
 }
 
+/**
+ * q_sort - recursively calls itself to create sortable subarrays
+ * @array: parent int array
+ * @lo: lower bound of subarray
+ * @hi: upper bound of subarray
+ * @size: size of array
+ */
 void q_sort(int *array, size_t lo, size_t hi, size_t size)
 {
 	size_t pb;
@@ -41,22 +61,14 @@ void q_sort(int *array, size_t lo, size_t hi, size_t size)
 	}
 }
 
+/**
+ * quick_sort_hoare - sorts int array using Quick Sort and Hoare's scheme
+ * @array: int array
+ * @size: size of int array
+ */
 void quick_sort_hoare(int *array, size_t size)
 {
 	if (!array || size < 2)
 		return;
 	q_sort(array, 0, size - 1, size);
-}
-
-int main(void)
-{
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    quick_sort_hoare(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }

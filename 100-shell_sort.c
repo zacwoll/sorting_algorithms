@@ -2,16 +2,17 @@
 
 /**
  * swap - swaps 2 elements in an int array
+ * @array: the array
  * @a: the first element index
  * @b: the second element index
  */
 void swap(int *array, int a, int b)
 {
-    if (a == b)
-        return;
-    array[a] ^= array[b];
-    array[b] ^= array[a];
-    array[a] ^= array[b];
+	if (a == b)
+		return;
+	array[a] ^= array[b];
+	array[b] ^= array[a];
+	array[a] ^= array[b];
 }
 
 /**
@@ -27,9 +28,14 @@ int start_gap(size_t size)
 	{
 		gap = gap * 3 + 1;
 	}
-	return gap;
+	return (gap);
 }
 
+/**
+ * shell_sort - sorts int array using shell sort
+ * @array: int array
+ * @size: size of array
+ */
 void shell_sort(int *array, size_t size)
 {
 	int gap, temp, i, j;
@@ -40,7 +46,7 @@ void shell_sort(int *array, size_t size)
 		for (i = gap; i < size; i++)
 		{
 			temp = array[i];
-			for (j = i; j >= gap && array[j - gap] > temp; j-= gap)
+			for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
 				array[j] = array[j - gap];
 			array[j] = temp;
 		}

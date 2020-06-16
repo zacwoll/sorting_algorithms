@@ -17,29 +17,39 @@ void swap(deck_node_t *a, deck_node_t *b)
 	b->next = a;
 }
 
+/**
+ * card_compare - compares two cards, swaps if b < a
+ * @a: card A
+ * @b: card B
+ * Return: true if b < a, false otherwise
+ */
 bool card_compare(const card_t *a, const card_t *b)
 {
-	char *values[13] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+	char *values[13] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9",
+		"10", "Jack", "Queen", "King"};
 	int i, j;
-	char kinds[4] = {'S', 'H', 'D', 'C'};
 
-	if (kinds[a->kind] < kinds[b->kind])
+	if (a->kind > b->kind)
 		return (true);
-	else if (kinds[a->kind] > kinds[b->kind])
+	else if (a->kind < b->kind)
 		return (false);
 
 	for (i = 0; i < 13; i++)
 		if (!strcmp(a->value, values[i]))
-				break;
+			break;
 	for (j = 0; j < 13; j++)
 		if (!strcmp(b->value, values[j]))
-				break;
+			break;
 	if (j < i)
 		return (true);
 	else
 		return (false);
 }
 
+/**
+ * cocktail_sort_deck - sorts deck using cocktail sort
+ * @deck: deck of cards to be sorted
+ */
 void cocktail_sort_deck(deck_node_t **deck)
 {
 	deck_node_t *i = *deck;
@@ -80,6 +90,10 @@ void cocktail_sort_deck(deck_node_t **deck)
 	}
 }
 
+/**
+ * sort_deck - sorts deck of cards by calling cocktail_sort_deck
+ * @deck: deck of cards
+ */
 void sort_deck(deck_node_t **deck)
 {
 	cocktail_sort_deck(deck);

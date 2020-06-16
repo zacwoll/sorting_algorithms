@@ -2,6 +2,7 @@
 
 /**
  * swap - swaps 2 elements in an int array
+ * @array: pointer to int array
  * @a: the first element index
  * @b: the second element index
  */
@@ -14,6 +15,11 @@ void swap(int *array, int a, int b)
 	array[a] ^= array[b];
 }
 
+/**
+ * selection_sort - sorts int array using selection sort
+ * @array: array to be sorted
+ * @size: size of array
+ */
 void selection_sort(int *array, size_t size)
 {
 	int i, j, min;
@@ -26,20 +32,10 @@ void selection_sort(int *array, size_t size)
 			if (array[j] < array[min])
 				min = j;
 		}
-		swap(array, min, i);
-		print_array(array, size);
+		if (min != i)
+		{
+			swap(array, min, i);
+			print_array(array, size);
+		}
 	}
-}
-
-int main(void)
-{
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    selection_sort(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }

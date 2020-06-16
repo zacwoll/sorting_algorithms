@@ -6,12 +6,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+/**
+ * enum kind_e - Suit of card
+ * @SPADE: value 0
+ * @HEART: value 1
+ * @CLUB: value 2
+ * @DIAMOND: value 3
+ */
 typedef enum kind_e
 {
-    SPADE = 0,
-    HEART,
-    CLUB,
-    DIAMOND
+	SPADE = 0,
+	HEART,
+	CLUB,
+	DIAMOND
 } kind_t;
 
 /**
@@ -23,8 +30,8 @@ typedef enum kind_e
  */
 typedef struct card_s
 {
-    const char *value;
-    const kind_t kind;
+	const char *value;
+	const kind_t kind;
 } card_t;
 
 /**
@@ -36,14 +43,14 @@ typedef struct card_s
  */
 typedef struct deck_node_s
 {
-    const card_t *card;
-    struct deck_node_s *prev;
-    struct deck_node_s *next;
+	const card_t *card;
+	struct deck_node_s *prev;
+	struct deck_node_s *next;
 } deck_node_t;
 
 /* prototypes */
 void cocktail_sort_deck(deck_node_t **deck);
 void swap(deck_node_t *a, deck_node_t *b);
 bool card_compare(const card_t *a, const card_t *b);
-
+void sort_deck(deck_node_t **deck);
 #endif /* DECK_H */

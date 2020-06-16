@@ -17,6 +17,10 @@ void swap(listint_t *a, listint_t *b)
 	b->next = a;
 }
 
+/**
+ * cocktail_sort_list - sorts doubly linked list using cocktail sort
+ * @list: list to be sorted
+ */
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *i = *list;

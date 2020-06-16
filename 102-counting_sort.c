@@ -1,5 +1,12 @@
 #include "sort.h"
 
+/**
+ * int_count - counts instances of key in array
+ * @array: int array
+ * @size: size of array
+ * @key: value to be searched for
+ * Return: total instances of key
+ */
 int int_count(int *array, size_t size, int key)
 {
 	int total = 0;
@@ -12,15 +19,20 @@ int int_count(int *array, size_t size, int key)
 	return (total);
 }
 
+/**
+ * counting_sort - sorts array using counting sort
+ * @array: int array
+ * @size: size of array
+ */
 void counting_sort(int *array, size_t size)
 {
-	int b = 0, a = 1;
-	size_t i, j, max = 0;
+	int a, b;
+	size_t i, j, max;
 	int *c_array, *sorted;
 
 	if (!array || size < 2)
 		return;
-	for (i = 0; i < size; i++)
+	for (max = 0, i = 0; i < size; i++)
 	{
 		if (array[i] > max)
 		{
@@ -31,7 +43,7 @@ void counting_sort(int *array, size_t size)
 	if (!c_array)
 		return;
 	c_array[0] = int_count(array, size, 0);
-	for (j = 0; j < ((size_t)max + 1); j++)
+	for (a = 1, j = 0; j < ((size_t)max + 1); j++)
 	{
 		b = c_array[j - 1] + int_count(array, size, a);
 		c_array[j] = b;
@@ -50,23 +62,4 @@ void counting_sort(int *array, size_t size)
 		array[i] = sorted[i];
 	free(sorted);
 	free(c_array);
-}
-
-
-/**
- * main - Entry point
- *
- * Return: Always 0
- */
-int main(void)
-{
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    counting_sort(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }

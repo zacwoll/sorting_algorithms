@@ -2,6 +2,7 @@
 
 /**
  * swap - swaps 2 elements in an int array
+ * @array: int array
  * @a: the first element index
  * @b: the second element index
  */
@@ -16,7 +17,7 @@ void swap(int *array, int a, int b)
 
 /**
  * bitonic_merge - Merge subarrays using Bitonic sort
- * @array: array of ints
+ * @array: int array
  * @n: size of subarray
  * @size: size of array
  * @i: lower index
@@ -81,9 +82,9 @@ void b_sort(int *array, size_t n, size_t size, int i, bool up)
 }
 
 /**
- * bitonic_sort - Sort integers using the Bitonic sort algorithm
- * @array: The array of integers
- * @size: The number of elements
+ * bitonic_sort - sort int array using bitonic sort
+ * @array: int array
+ * @size: size of array
  */
 void bitonic_sort(int *array, size_t size)
 {
@@ -91,18 +92,4 @@ void bitonic_sort(int *array, size_t size)
 		return;
 
 	b_sort(array, size, size, 0, true);
-}
-
-int main(void)
-{
-    int array[] = {100, 93, 40, 57, 14, 58, 85, 54, 31, 56, 46, 39, 15, 26, 78, 13};
-    //int array[] = {4, 3, 1, 2};
-	size_t n = sizeof(array) / sizeof(array[0]);
-
-    print_array(array, n);
-    printf("\n");
-    bitonic_sort(array, n);
-    printf("\n");
-    print_array(array, n);
-    return (0);
 }
