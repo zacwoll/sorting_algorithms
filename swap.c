@@ -1,5 +1,6 @@
 /**
  * swap - swaps 2 elements in an int array
+ * @array: pointer to int array
  * @a: the first element index
  * @b: the second element index
  */
