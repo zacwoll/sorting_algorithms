@@ -26,8 +26,8 @@ int int_count(int *array, size_t size, int key)
  */
 void counting_sort(int *array, size_t size)
 {
-	int a, b;
-	size_t i, j, max;
+	int a, b, max;
+	size_t i, j;
 	int *c_array, *sorted;
 
 	if (!array || size < 2)
