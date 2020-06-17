@@ -6,33 +6,37 @@
  * @size: size of int array
  * @exp: exponent to be accounted for
  */
-void count_sort(int *array, size_t size, int exp)
+void count_sort(int *array,const size_t size, int exp)
 {
-	size_t i;
-	int output[size];
+	ssize_t i;
+	size_t j;
+	int *output; /* y not */
 	int count[10] = {0};
+
+	output = malloc(size * sizeof(int));
+	if (!output)
+		return;
 
 	/* store LSD count in count[] */
 	/* array at i / exponent of ten % 10 increase by 1 */
-	for (i = 0; i < size; i++)
-		count[(array[i] / exp) % 10]++;
+	for (j = 0; j < size; j++)
+		count[(array[j] / exp) % 10]++;
 
 	/* modify count array to store indices */
 	for (i = 1; i < 10; i++)
 		count[i] += count[i - 1];
 
 	/* sorted insert values into output[] */
-	for (i = size - 1; i >= 0; i--)
+	for (i = (ssize_t) size - 1; i >= 0; i--)
 	{
 		output[count[(array[i] / exp) % 10] - 1] = array[i];
 		count[(array[i] / exp) % 10]--;
-		if (i == 0)
-			break;
 	}
 
-	for (i = 0; i < size; i++)
-		array[i] = output[i];
+	for (j = 0; j < size; j++)
+		array[j] = output[j];
 	print_array(array, size);
+	free(output);
 }
 
 /**
@@ -42,7 +46,8 @@ void count_sort(int *array, size_t size, int exp)
  */
 void radix_sort(int *array, size_t size)
 {
-	int i, max;
+	size_t i;
+	int max;
 
 	for (max = 0, i = 0; i < size; i++)
 		if (array[i] > max)
