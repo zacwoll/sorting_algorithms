@@ -59,7 +59,7 @@ void b_sort(int *array, size_t n, size_t size, int i, bool up)
 
 	if (n > 1)
 	{
-		printf("Merging [%zu/%zu] (", n, size);
+		printf("Merging [%lu/%lu] (", (unsigned long) n, (unsigned long) size);
 		if (up)
 			printf("UP):\n");
 		else
