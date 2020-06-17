@@ -40,6 +40,7 @@ int partition(int *array, size_t lo, size_t hi, size_t size)
 		print_array(array, size);
 		i++;
 	}
+	return (j);
 }
 
 /**
