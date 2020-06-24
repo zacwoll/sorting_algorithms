@@ -23,11 +23,12 @@ void swap(listint_t *a, listint_t *b)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *i = *list;
+	listint_t *i;
 	bool unsorted = true;
 
 	if (!list || !*list)
 		return;
+    i = *list;
 	while (unsorted)
 	{
 		unsorted = false;
